@@ -107,7 +107,7 @@ with col2:
                     </p>"""
     st.markdown(htmlstr2, unsafe_allow_html=True)
 
-
+st.markdown("### ")
 st.write("## Options Price - Interactive Heatmap")
 st.caption("Shows how option prices vary with stock price and volatility, holding other inputs constant.")
 
@@ -140,7 +140,7 @@ with col5:
     st.pyplot(plt)
 
 st.write("## Option Greeks")
-
+st.markdown("### ")
 greeks = black_scholes_greeks(S, K, T, r, sigma)
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
@@ -169,8 +169,9 @@ with col6:
     st.metric("Call Rho", f"{greeks['rho_call']:.3f}")
     st.metric("Put Rho", f"{greeks['rho_put']:.3f}")
 
-
+st.markdown("### ")
 st.write("## Greeks vs Stock Price")
+st.markdown("### ")
 
 S_range = np.linspace(0.5*S, 1.5*S, 100)
 
@@ -217,30 +218,38 @@ with col2:
 
     st.pyplot(fig2)
 
-fig, ax = plt.subplots()
-ax.plot(S_range, vega_vals)
-ax.set_title("Vega vs Stock Price")
-ax.set_xlabel("Stock Price")
-ax.set_ylabel("Vega")
+col3, col4 = st.columns(2)
 
-st.pyplot(fig)
+with col3:
+    fig3, ax = plt.subplots()
+    ax.plot(S_range, vega_vals)
+    ax.set_title("Vega vs Stock Price")
+    ax.set_xlabel("Stock Price")
+    ax.set_ylabel("Vega")
 
-fig, ax = plt.subplots()
-ax.plot(S_range, theta_call_vals, label="Call Theta")
-ax.plot(S_range, theta_put_vals, label="Put Theta")
-ax.set_title("Theta vs Stock Price")
-ax.set_xlabel("Stock Price")
-ax.set_ylabel("Theta")
-ax.legend()
+    st.pyplot(fig3)
 
-st.pyplot(fig)
+with col4:
 
-fig, ax = plt.subplots()
-ax.plot(S_range, rho_call_vals, label="Call Rho")
-ax.plot(S_range, rho_put_vals, label="Put Rho")
-ax.set_title("Rho vs Stock Price")
-ax.set_xlabel("Stock Price")
-ax.set_ylabel("Rho")
-ax.legend()
+    fig4, ax = plt.subplots()
+    ax.plot(S_range, theta_call_vals, label="Call Theta")
+    ax.plot(S_range, theta_put_vals, label="Put Theta")
+    ax.set_title("Theta vs Stock Price")
+    ax.set_xlabel("Stock Price")
+    ax.set_ylabel("Theta")
+    ax.legend()
 
-st.pyplot(fig)
+    st.pyplot(fig4)
+
+col_left, col_center, col_right = st.columns([1, 2, 1])
+
+with col_center:
+    fig, ax = plt.subplots()
+    ax.plot(S_range, rho_call_vals, label="Call Rho")
+    ax.plot(S_range, rho_put_vals, label="Put Rho")
+    ax.set_title("Rho vs Stock Price")
+    ax.set_xlabel("Stock Price")
+    ax.set_ylabel("Rho")
+    ax.legend()
+
+    st.pyplot(fig)
