@@ -73,11 +73,11 @@ $$
 The price of a European call option ($C$) and put option ($P$) are:
 
 $$
-C = S \dot N(d_1) - K e^{-rT} N(d_2)
+C = S \cdot N(d_1) - K e^{-rT} N(d_2)
 $$
 
 $$
-P = K e^{-rT} N(-d_2) - S \dot N(-d_1)
+P = K e^{-rT} N(-d_2) - S \cdot N(-d_1)
 $$
 
 where $N(x)$ is the cumulative distribution function (CDF) of the standard normal distribution.
