@@ -89,10 +89,10 @@ The Greeks are sensitivities of the option price to various parameters. This pro
 
 | Greek      | Meaning                                 | Formula (Call)                                                                 | Formula (Put)                                                                  |
 |------------|-----------------------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Delta      | Sensitivity to underlying price ($S$)   | $ N(d_1)$                                                     | $N(d_1) - 1$                                                   |
+| Delta      | Sensitivity to underlying price ($S$)   | $N(d_1 )$                                                     | $N(d_1) - 1$                                                   |
 | Gamma      | Sensitivity of Delta to $S$             | $\frac{N'(d_1)}{S\sigma\sqrt{T}}$                                  | $\frac{N'(d_1)}{S\sigma\sqrt{T}}$                                  |
 | Vega       | Sensitivity to volatility ($\sigma$)    | $S N'(d_1) \sqrt{T}$                                           | $S N'(d_1) \sqrt{T}$                                           |
-| Theta      | Sensitivity to time ($T$)               | $- \frac{S N'(d_1) \sigma}{2\sqrt{T}} - rK e^{-rT} N(d_2)$  | $- \frac{S N'(d_1) \sigma}{2\sqrt{T}} + rK e^{-rT} N(-d_2)$  |
+| Theta      | Sensitivity to time ($T$)               | $ -\frac{S N'(d_1) \sigma}{2\sqrt{T}} - rK e^{-rT} N(d_2)$  | $- \frac{S N'(d_1) \sigma}{2\sqrt{T}} + rK e^{-rT} N(-d_2)$  |
 | Rho        | Sensitivity to interest rate ($r$)      | $K T e^{-rT} N(d_2)$                                      | $-K T e^{-rT} N(-d_2)$                                     |
 
 Where $N'(d_1)$ is the standard normal probability density function (PDF), and $N(x)$ is the CDF.
