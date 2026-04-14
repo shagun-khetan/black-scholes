@@ -102,10 +102,6 @@ Put option Greeks have similar formulas, with some sign changes:
 - Provides a simple interface for users to input parameters and see results
 - Designed for both educational and practical use
 
-## Example
-
-You can modify `app.py` to input your own parameters for option pricing, or use the provided interface to experiment with different scenarios.
-
 ## Requirements
 
 - Python 3.7 or higher
