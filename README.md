@@ -73,11 +73,11 @@ $$
 The price of a European call option ($C$) and put option ($P$) are:
 
 $$
-C = S\.N(d_1) - K e^{-rT} N(d_2)
+C = S*N(d_1) - K e^{-rT} N(d_2)
 $$
 
 $$
-P = K e^{-rT} N(-d_2) - S N(-d_1)
+P = K e^{-rT} N(-d_2) - S*N(-d_1)
 $$
 
 where $N(x)$ is the cumulative distribution function (CDF) of the standard normal distribution.
@@ -92,7 +92,7 @@ The Greeks are sensitivities of the option price to various parameters. This pro
 | Delta      | Sensitivity to underlying price ($S$)   | $ N(d_1)$                                                     | $N(d_1) - 1$                                                   |
 | Gamma      | Sensitivity of Delta to $S$             | $\frac{N'(d_1)}{S\sigma\sqrt{T}}$                                  | $\frac{N'(d_1)}{S\sigma\sqrt{T}}$                                  |
 | Vega       | Sensitivity to volatility ($\sigma$)    | $S N'(d_1) \sqrt{T}$                                           | $S N'(d_1) \sqrt{T}$                                           |
-| Theta      | Sensitivity to time ($T$)               | $ -\frac{S N'(d_1) \sigma}{2\sqrt{T}} - rK e^{-rT} N(d_2)$  | $ -\frac{S N'(d_1) \sigma}{2\sqrt{T}} + rK e^{-rT} N(-d_2)$  |
+| Theta      | Sensitivity to time ($T$)               | $ - \frac{S N'(d_1) \sigma}{2\sqrt{T}} - rK e^{-rT} N(d_2)$  | $ - \frac{S N'(d_1) \sigma}{2\sqrt{T}} + rK e^{-rT} N(-d_2)$  |
 | Rho        | Sensitivity to interest rate ($r$)      | $K T e^{-rT} N(d_2)$                                      | $-K T e^{-rT} N(-d_2)$                                     |
 
 Where $N'(d_1)$ is the standard normal probability density function (PDF), and $N(x)$ is the CDF.
