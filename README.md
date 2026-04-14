@@ -48,52 +48,44 @@ This repository provides:
 
 ## Black-Scholes Formulas
 
-The Black-Scholes model uses the following formulas to price European call and put options:
+
+The Black-Scholes model uses the following formulas to price European call and put options. These are written in plain text for compatibility with GitHub's markdown renderer.
 
 ### Option Pricing Equations
 
 Let:
-- $S$ = Current price of the underlying asset
-- $K$ = Strike price of the option
-- $T$ = Time to expiration (in years)
-- $r$ = Risk-free interest rate (annualized)
-- $\sigma$ = Volatility of the underlying asset (annualized standard deviation)
+- S = Current price of the underlying asset
+- K = Strike price of the option
+- T = Time to expiration (in years)
+- r = Risk-free interest rate (annualized)
+- sigma = Volatility of the underlying asset (annualized standard deviation)
 
 Define:
-$$
-d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}
-$$
-$$
-d_2 = d_1 - \sigma\sqrt{T}
-$$
 
-The price of a European call option ($C$) and put option ($P$) are:
-$$
-C = S\,N(d_1) - K e^{-rT} N(d_2)
-$$
-$$
-P = K e^{-rT} N(-d_2) - S N(-d_1)
-$$
-where $N(x)$ is the cumulative distribution function (CDF) of the standard normal distribution.
+   d1 = [ln(S/K) + (r + sigma^2 / 2) * T] / (sigma * sqrt(T))
+   d2 = d1 - sigma * sqrt(T)
+
+The price of a European call option (C) and put option (P) are:
+
+   C = S * N(d1) - K * exp(-r*T) * N(d2)
+   P = K * exp(-r*T) * N(-d2) - S * N(-d1)
+
+where N(x) is the cumulative distribution function (CDF) of the standard normal distribution.
 
 ## The Greeks
 
+
 The Greeks are sensitivities of the option price to various parameters. This project calculates the following Greeks:
 
-| Greek      | Meaning                                 | Formula (Call)                                                                 |
-|------------|-----------------------------------------|-------------------------------------------------------------------------------|
-| Delta      | Sensitivity to underlying price ($S$)   | $\Delta_{call} = N(d_1)$                                                     |
-| Gamma      | Sensitivity of Delta to $S$             | $\Gamma = \frac{N'(d_1)}{S\sigma\sqrt{T}}$                                  |
-| Vega       | Sensitivity to volatility ($\sigma$)    | $\text{Vega} = S N'(d_1) \sqrt{T}$                                           |
-| Theta      | Sensitivity to time ($T$)               | $\Theta_{call} = -\frac{S N'(d_1) \sigma}{2\sqrt{T}} - rK e^{-rT} N(d_2)$  |
-| Rho        | Sensitivity to interest rate ($r$)      | $\text{Rho}_{call} = K T e^{-rT} N(d_2)$                                      |
+| Greek      | Meaning                                 | Formula (Call)                                                        | Formula (Put)                                                        |
+|------------|-----------------------------------------|----------------------------------------------------------------------|----------------------------------------------------------------------|
+| Delta      | Sensitivity to underlying price (S)     | Delta_call = N(d1)                                                   | Delta_put = N(d1) - 1                                                |
+| Gamma      | Sensitivity of Delta to S               | Gamma = N'(d1) / (S * sigma * sqrt(T))                               | Gamma = N'(d1) / (S * sigma * sqrt(T))                               |
+| Vega       | Sensitivity to volatility (sigma)       | Vega = S * N'(d1) * sqrt(T)                                          | Vega = S * N'(d1) * sqrt(T)                                          |
+| Theta      | Sensitivity to time (T)                 | Theta_call = -[S * N'(d1) * sigma / (2 * sqrt(T))] - rK * exp(-rT) * N(d2) | Theta_put = -[S * N'(d1) * sigma / (2 * sqrt(T))] + rK * exp(-rT) * N(-d2) |
+| Rho        | Sensitivity to interest rate (r)        | Rho_call = K * T * exp(-rT) * N(d2)                                  | Rho_put = -K * T * exp(-rT) * N(-d2)                                 |
 
-Where $N'(d_1)$ is the standard normal probability density function (PDF).
-
-Put option Greeks have similar formulas, with some sign changes:
-- $\Delta_{put} = N(d_1) - 1$
-- $\Theta_{put} = -\frac{S N'(d_1) \sigma}{2\sqrt{T}} + rK e^{-rT} N(-d_2)$
-- $\text{Rho}_{put} = -K T e^{-rT} N(-d_2)$
+Where N'(d1) is the standard normal probability density function (PDF), and N(x) is the CDF.
 
 ## What the Project Does
 
