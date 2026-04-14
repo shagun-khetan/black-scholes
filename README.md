@@ -3,6 +3,8 @@
 
 This project is a Python-based tool for pricing European call and put options using the Black-Scholes model. It is designed for anyone interested in financial engineering, quantitative finance, or simply learning about option pricing—even if you have no prior knowledge of the Black-Scholes formula.
 
+Link to the project: https://black-scholes-sk.streamlit.app
+
 ## What is the Black-Scholes Model?
 
 The Black-Scholes model is a mathematical formula used to determine the fair price of European-style options. Developed by Fischer Black, Myron Scholes, and Robert Merton in 1973, it revolutionized financial markets by providing a systematic way to value options. The model assumes that:
