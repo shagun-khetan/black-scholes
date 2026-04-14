@@ -38,10 +38,13 @@ def heatmap_parameters(volatility, spot_price):
     spot_price_upper_bound = spot_price+spot_price*0.5
     st.sidebar.divider()
     # Section for heatmap parameter selection
-    st.sidebar.button("### Heatmap Parameters")
-    min_spot_price = st.sidebar.number_input("Min Spot Price", min_value=0.0, value=spot_price_lower_bound, key="min_spot_price")
-    max_spot_price = st.sidebar.number_input("Max Spot Price", min_value=0.1, value=spot_price_upper_bound, key="max_spot_price")
-    spot_prices_range = [min_spot_price, max_spot_price]
+    st.sidebar.button("Heatmap Parameters")
+    spot_prices_range = st.sidebar.slider(
+    "Spot Price Range",
+    min_value=0.0,
+    max_value=2*spot_price,
+    value=(spot_price_lower_bound, spot_price_upper_bound)
+)
     # Slider for volatility range
     volatilities_range = np.array(st.sidebar.slider("Volatilities (%)", volatility_lower_bound*100, volatility_upper_bound*100, (volatility_lower_bound*100, volatility_upper_bound*100), step=0.01, key="volatilities_range"))/100
     return spot_prices_range, volatilities_range
